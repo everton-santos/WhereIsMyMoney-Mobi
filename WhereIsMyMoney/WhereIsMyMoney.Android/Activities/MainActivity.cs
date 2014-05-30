@@ -16,7 +16,6 @@ namespace WhereIsMyMoney.Android
 	[Activity (Label = "WhereIsMyMoney.Android", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
 	{
-		int count = 1;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -31,23 +30,17 @@ namespace WhereIsMyMoney.Android
 
 			button.Click += delegate
 			{
-				button.Text = string.Format ("{0} clicks!", count++);
+				var dao = new DAO.TransactionDAO ();
 
+				var r = new Random ();
 
-				var dao = new TransactionDAO();
+				var value = Math.Round (r.NextDouble (), 2) + r.Next (1000);
 
-				var r = new Random();
+				var t = new Models.Transaction () { IDCategory = 1, Note = "Test", DateTime = DateTime.Now, Value = value };
 
-				var dr = Math.Round( r.NextDouble(), 2);
+				dao.Save(t);
 
-				var t = new Transaction{Value = dr + r.Next(100)};
-
-				dao.Insert(t);
-
-				var tresult = dao.GetByID(t);
-
-				button.Text = string.Format("id {0}, value {1}", tresult.ID, tresult.Value);
-
+				button.Text = string.Format(" id = {0}, note = {1} , value = {2}", t.ID, t.Note, t.Value);
 			};
 
 

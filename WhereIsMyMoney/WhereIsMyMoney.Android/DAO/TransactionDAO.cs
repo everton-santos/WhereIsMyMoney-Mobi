@@ -1,51 +1,23 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
+using WhereIsMyMoney.Models;
 
-
-namespace WhereIsMyMoney.Android
+namespace WhereIsMyMoney.DAO
 {
-	public class TransactionDAO: GenericDAO<Transaction>
+	public class TransactionDAO : GenericDAO<Transaction>
 	{
+		#region implemented abstract members of GenericDAO
 
-		protected override Transaction FromReader (Mono.Data.Sqlite.SqliteDataReader rd)
+		public override Transaction FindByID (Transaction entity)
 		{
-			return new Transaction { ID= rd.GetInt32(rd.GetOrdinal("ID")), Value = rd.GetDouble(rd.GetOrdinal("Value")) };
+			lock (locker)
+			{
+				return db.Table<Transaction> ().Where (x => x.ID == entity.ID).FirstOrDefault ();
+			}
 		}
 
-		public override Transaction GetByID (Transaction entity)
-		{
-			var sql = "select * from [Transaction] where ID = ?";
+		#endregion
 
-			var cmd = new Mono.Data.Sqlite.SqliteCommand (sql);
 
-			cmd.Parameters.Add (new Mono.Data.Sqlite.SqliteParameter (System.Data.DbType.Int32) { Value = entity.ID });
-
-			return Query (cmd).FirstOrDefault ();
-		}
-
-		public override Mono.Data.Sqlite.SqliteCommand GetDeleteCommand (Transaction entity)
-		{
-			throw new NotImplementedException ();
-		}
-
-		protected override Mono.Data.Sqlite.SqliteCommand GetInsertCommand (Transaction entity)
-		{
-			var sql = "insert into [Transaction] ( Value) values(@Value )";
-
-			var cmd = new Mono.Data.Sqlite.SqliteCommand (sql);
-
-			cmd.Parameters.Add (new Mono.Data.Sqlite.SqliteParameter (System.Data.DbType.Double) { Value = entity.Value, ParameterName = "@Value" });
-
-			return cmd;
-		}
-
-		public override Mono.Data.Sqlite.SqliteCommand GetUpdateCommand (Transaction entity)
-		{
-			throw new NotImplementedException ();
-		}
 	}
 }
 
