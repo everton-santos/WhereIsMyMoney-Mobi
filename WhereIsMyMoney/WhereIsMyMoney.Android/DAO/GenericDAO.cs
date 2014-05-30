@@ -41,11 +41,14 @@ namespace WhereIsMyMoney.DAO
 			}
 		}
 
-		public int Count ()
+		public int Count
 		{
-			lock (locker)
+			get
 			{
-				return db.Table<TEntity> ().Count ();
+				lock (locker)
+				{
+					return db.Table<TEntity> ().Count ();
+				}
 			}
 		}
 	}

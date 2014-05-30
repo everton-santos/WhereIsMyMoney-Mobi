@@ -30,23 +30,33 @@ namespace WhereIsMyMoney.Android
 
 			button.Click += delegate
 			{
-				var dao = new DAO.TransactionDAO ();
+
 
 				var r = new Random ();
 
 				var value = Math.Round (r.NextDouble (), 2) + r.Next (1000);
 
-				var t = new Models.Transaction () { IDCategory = 1, Note = "Test", DateTime = DateTime.Now, Value = value };
+				WhereIsMyMoney.Models.TransactionType type; 
 
-				dao.Save(t);
+				switch (r.Next (1))
+				{
+					case 1: 
+						type = WhereIsMyMoney.Models.TransactionType.CashIn;
+						break;
+					default:
+						type = WhereIsMyMoney.Models.TransactionType.CashOut;
+						break;
+				}
 
-				button.Text = string.Format(" id = {0}, note = {1} , value = {2}", t.ID, t.Note, t.Value);
+				var t = new Models.Transaction () { IDCategory = 1, Note = "Test", DateTime = DateTime.Now, Value = value , Type = type };
+
+				dao.Save (t);
+
+
+				button.Text = string.Format (" id = {0}, note = {1} , value = {2} , type = {3}", t.ID, t.Note, t.Value, t.Type);
 			};
 
-
-
 		}
-
 
 	}
 }

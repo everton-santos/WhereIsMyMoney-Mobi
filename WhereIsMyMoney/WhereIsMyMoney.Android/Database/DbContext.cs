@@ -5,9 +5,6 @@ namespace WhereIsMyMoney.Database
 {
 	public class DbContext : SQLite.SQLiteConnection
 	{
-		 
-
-
 
 		public static string DatabaseFilePath
 		{
@@ -46,7 +43,13 @@ namespace WhereIsMyMoney.Database
 		public DbContext () : base (DatabaseFilePath)
 		{
 			CreateTable<WhereIsMyMoney.Models.Transaction> ();
+			CreateTable<WhereIsMyMoney.Models.Category> ();
 		}
+
+		public SQLite.TableQuery<WhereIsMyMoney.Models.Transaction> Transactions { get; set; }
+
+		public SQLite.TableQuery<WhereIsMyMoney.Models.Category> Categories { get; set; }
+
 
 	}
 }

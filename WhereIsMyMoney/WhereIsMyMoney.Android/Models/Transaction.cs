@@ -21,11 +21,15 @@ namespace WhereIsMyMoney.Models
 		[SQLite.Indexed]
 		public int IDCategory { get; set; }
 
+		public TransactionType Type { get; set; }
+
 		public double Value { get; set; }
 
 		public DateTime DateTime { get; set; }
 
 		public string Note { get; set; }
 	}
+
+	public enum TransactionType { CashIn, CashOut}
 }
 

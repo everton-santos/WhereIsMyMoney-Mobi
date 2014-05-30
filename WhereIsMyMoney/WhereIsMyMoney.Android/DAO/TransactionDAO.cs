@@ -11,7 +11,7 @@ namespace WhereIsMyMoney.DAO
 		{
 			lock (locker)
 			{
-				return db.Table<Transaction> ().Where (x => x.ID == entity.ID).FirstOrDefault ();
+				return db.Transactions.Where (x => x.ID == entity.ID).FirstOrDefault ();
 			}
 		}
 
