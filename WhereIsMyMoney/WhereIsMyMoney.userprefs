@@ -1,0 +1,13 @@
+﻿<Properties GitUserInfo="UsingGIT">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\Everton\everton.mailbox.developer\Sources\Csharp\Xamarin\WhereIsMyMoney-Mobi\WhereIsMyMoney\WhereIsMyMoney.Android\DAO\GenericDAO.cs" line="261" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="WhereIsMyMoney.Android\DAO\GenericDAO.cs" line="32" offsetX="235" offsetY="496" expression="locker" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.ItemProperties.WhereIsMyMoney.Android MonoForAntroid.PreferredDevice="3.7&quot; WVGA (Nexus One)" MonoForAntroid.PreferredTheme="Theme.Holo.Light.Dialog.NoActionBar" AndroidDeviceId-Debug="02154c8e950cc9ea" />
+</Properties>

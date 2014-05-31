@@ -31,7 +31,7 @@ namespace WhereIsMyMoney.Application
 			return dao.GetList ();
 		}
 
-		public virtual int Count { get { return dao.Count (); } }
+		public virtual int Count { get { return dao.Count; } }
 
 	}
 }

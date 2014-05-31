@@ -31,6 +31,7 @@ namespace WhereIsMyMoney.Android
 			button.Click += delegate
 			{
 
+				var app = new Application.TransactionApp();
 
 				var r = new Random ();
 
@@ -50,7 +51,7 @@ namespace WhereIsMyMoney.Android
 
 				var t = new Models.Transaction () { IDCategory = 1, Note = "Test", DateTime = DateTime.Now, Value = value , Type = type };
 
-				dao.Save (t);
+				app.Save(t);
 
 
 				button.Text = string.Format (" id = {0}, note = {1} , value = {2} , type = {3}", t.ID, t.Note, t.Value, t.Type);
